@@ -14,6 +14,7 @@ set(SOURCES
     src/bird.cpp
     src/pipe.cpp
     src/game.cpp
+    src/input.cpp
 )
 
 set(HEADERS

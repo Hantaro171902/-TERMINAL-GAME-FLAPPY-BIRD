@@ -7,16 +7,14 @@ class Pipe;
 
 class Bird {
 private:
-    int width, height;
-    float velocity;
-    float gravity;
-    float flapStrength;
+    int h0;
+    int t;
 
 public:
-    Bird(int startX, int startY);
-    void flap();
-    void update();
-    void draw() const;
-    int getRow() const;
-    int getCol() const;
+    Bird();
+    void update(bool jump);
+    int get_position() const;
+    void draw(std::vector<std::string>& screen, int frame) const;
+    bool crashed(int ceiling, int floor) const;
+    bool crashed_into(const Pipe& p) const;
 };

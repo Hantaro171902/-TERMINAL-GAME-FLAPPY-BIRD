@@ -7,6 +7,14 @@ void clearScreen() {
     cout << "\033[2J\033[1;1H";
 }
 
+void clearTerminal() {
+#ifdef _WIN32
+    system("cls");
+#else
+    cout << "\033c"; // Full reset
+#endif
+}
+
 void moveCursor(int x, int y) {
     cout << "\033[" << y << ";" << x << "H";
 }

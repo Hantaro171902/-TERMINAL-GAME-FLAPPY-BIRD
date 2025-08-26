@@ -1,7 +1,9 @@
 #include "game.hpp"
+#include "utils.hpp"
 
 int main() {
-    Game game(24, 80); // rows, cols
+    Game game;
     game.run();
+    showCursor();
     return 0;
 }

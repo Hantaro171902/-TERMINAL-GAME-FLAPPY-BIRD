@@ -1,21 +1,18 @@
 #pragma once
-#include "bird.hpp"
+
+#include <vector>
+#include <string>
 
 class Pipe {
 private:
+    float opening_height;
     int center;
-    float openingHeight; // As a fraction of the console height
-    // static const int PIPE_RADIUS = 3;
-    // static const int NUM_ROWS = 24;
-    // static const int NUM_COLS = 80;
-    int width;
-    int screenRows, screenCols;
 
 public:
-    Pipe(int startCols, int rows, int cols);
-    void update();
-    void draw() const;
-    bool collidesWith(const Bird& bird) const;
-    int getCenter() const;
+    Pipe();
+    Pipe(int initial_center, float initial_height); 
+    void refresh(int& score);
+    void draw(std::vector<std::string>& screen, int ceiling_row, int floor_row) const;
+    int get_orow(int top) const;
+    int get_center() const;
 };
-
