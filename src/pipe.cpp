@@ -1,11 +1,12 @@
 #include "pipe.hpp"
 #include "game.hpp"  // For constants like PIPE_RADIUS, NUM_COLS, etc.
+#include "color.hpp"
 #include <cstdlib>
+#include <iostream>
 
 Pipe::Pipe() : opening_height(0.0f), center(0) {}
 
 Pipe::Pipe(int initial_center, float initial_height) : opening_height(initial_height), center(initial_center) {}
-
 
 void Pipe::refresh(int& score) {
     if (center + PIPE_RADIUS < 0) {
@@ -26,7 +27,7 @@ int Pipe::get_center() const {
 
 void Pipe::draw(std::vector<std::string>& screen, int ceiling_row, int floor_row) const {
     int upper_terminus, lower_terminus;
-
+    std::cout << "\033[37;42m"; // Set white text with green background
     // Vertical part of upper pipe
     for (int i = ceiling_row + 1; i < get_orow(1); i++) {
         if (center - PIPE_RADIUS >= 0 && center - PIPE_RADIUS < NUM_COLS)
@@ -56,4 +57,5 @@ void Pipe::draw(std::vector<std::string>& screen, int ceiling_row, int floor_row
         if (center + j >= 0 && center + j < NUM_COLS)
             screen[lower_terminus][center + j] = '=';
     }
+    
 }

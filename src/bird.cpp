@@ -1,5 +1,6 @@
 #include "bird.hpp"
 #include "pipe.hpp"
+#include "color.hpp"
 #include "game.hpp"  // For constants like GRAV, V0, FLAPPY_COL, etc.
 
 Bird::Bird() : h0(NUM_ROWS / 2), t(0) {}
@@ -37,6 +38,7 @@ bool Bird::crashed_into(const Pipe& p) const {
 
 void Bird::draw(std::vector<std::string>& screen, int frame) const {
     int h = get_position();
+    setTextColor(BRIGHT_YELLOW);
     if (GRAV * t + V0 > 0) {  // Going down
         if (h >= 0 && h < NUM_ROWS && FLAPPY_COL - 1 >= 0 && FLAPPY_COL - 1 < NUM_COLS)
             screen[h][FLAPPY_COL - 1] = '\\';
@@ -77,4 +79,5 @@ void Bird::draw(std::vector<std::string>& screen, int frame) const {
                 screen[h - 1][FLAPPY_COL + 2] = '/';
         }
     }
+    resetTextColor();
 }

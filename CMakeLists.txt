@@ -15,6 +15,7 @@ set(SOURCES
     src/pipe.cpp
     src/game.cpp
     src/input.cpp
+    src/color.cpp
 )
 
 set(HEADERS
@@ -23,6 +24,7 @@ set(HEADERS
     src/headers/pipe.hpp
     src/headers/game.hpp
     src/headers/input.hpp
+    src/headers/color.hpp
 )
 
 # Exe
