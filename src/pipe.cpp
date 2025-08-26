@@ -4,8 +4,6 @@
 
 using namespace std;
 
-Utils utils;
-
 Pipe::Pipe(int startCols, int rows, int cols) 
     : center(startCols), screenRows(rows), screenCols(cols), width(6) {
     openingHeight = rand() % (rows - 10) + 5;
@@ -20,17 +18,17 @@ void Pipe::update() {
 }
 
 void Pipe::draw() const {
-    utils.moveCursor(center - width / 2, 1);
+    moveCursor(center - width / 2, 1);
     for (int r = 1; r < openingHeight - 3; r++) {
-        utils.moveCursor(center - width / 2, r);
+        moveCursor(center - width / 2, r);
         cout << "||";
-        utils.moveCursor(center + width / 2, r);
+        moveCursor(center + width / 2, r);
         cout << "||";
     }
     for (int r = openingHeight + 3; r < screenRows; r++) {
-        utils.moveCursor(center - width / 2, r);
+        moveCursor(center - width / 2, r);
         cout << "||";
-        utils.moveCursor(center + width / 2, r);
+        moveCursor(center + width / 2, r);
         cout << "||";
     }
 }
