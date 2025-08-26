@@ -2,8 +2,11 @@
 #include <iostream>
 
 class Utils {
-    void clearScreen();
-    void moveCursor(int x, int y);
-    void hideCursor();
-    void showCursor();
-}
+public:    
+    static void clearScreen();
+    static void moveCursor(int x, int y);
+    static void hideCursor();
+    static void showCursor();
+};
+
+extern Utils utils;

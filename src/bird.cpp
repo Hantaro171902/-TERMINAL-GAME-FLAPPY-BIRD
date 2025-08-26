@@ -4,6 +4,8 @@
 
 using namespace std;
 
+Utils utils;
+
 Bird::Bird(int startX, int startY) 
     : width(startX), height(startY), velocity(0), gravity(0.3f), flapStrength(-1.2f) {
     // Initialize bird position
@@ -20,11 +22,10 @@ void Bird::update() {
         width = 1;
     }
 
-
 }
 
 void Bird::draw() const {
-    Utils::moveCursor(width, height);
+    utils.moveCursor(width, height);
     cout << "🐦";
 }
 

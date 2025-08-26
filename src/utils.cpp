@@ -3,6 +3,8 @@
 
 using namespace std;
 
+Utils utils; // single definition here
+
 void Utils::clearScreen() {
     cout << "\033[2J\033[1;1H";
 }

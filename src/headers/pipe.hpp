@@ -12,10 +12,10 @@ private:
     int screenRows, screenCols;
 
 public:
-    Pipe(int center, float openingHeight);
+    Pipe(int startCols, int rows, int cols);
     void update();
     void draw() const;
     bool collidesWith(const Bird& bird) const;
     int getCenter() const;
-}
+};
 
