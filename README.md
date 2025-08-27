@@ -31,7 +31,7 @@ This project brings the classic endless-runner vibes into ASCII art, powered by 
 ### Build and run
 
    ```bash
-    git clone https://github.com/your-username/flappy-bird-ascii.git
+    https://github.com/Hantaro171902/-TERMINAL-GAME-FLAPPY-BIRD.git
     mkdir build && cd build
     cmake ..
     make
