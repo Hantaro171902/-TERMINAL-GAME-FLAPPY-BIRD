@@ -30,6 +30,7 @@ void Game::render() const {
         }
         std::cout << getResetColor() << std::endl;
     }
+    showCursor();
 }
 
 void Game::draw(int ceil_row, int floor_row, char ch, int spacing, int col_start) {
@@ -78,11 +79,11 @@ void Game::splash_screen() {
 
     // Draw the title
     std::string lines[5] = {
-        " ___ _         _         ___ _      _ ",
-        "| __| |__ _ _ __ _ __ _  | _ |_)_ _ __| |",
-        "| _|| / _` | '_ \\ '_ \\ || | | _ \\ | '_/ _` |",
-        "|_| |_\\__,_| .__/ .__/\\_, | |___/_|_| \\__,_|",
-        "           |_|  |_|  |__/          "
+        " ___ _                       ___       _   ",
+        "| __| |__ _ _ __ _ __ _  _  | _ ) __ _| |_ ",
+        "| _|| / _` | '_ \\ '_ \\ || | | _ \\/ _` |  _|",
+        "|_| |\\__,_| .__/ .__/\_, | |___/\\__,_|\\__|",
+        "            |_|  |_|   |__/                  "
     };
     int r = NUM_ROWS / 2 - 6;
     int c = NUM_COLS / 2 - 22;
@@ -146,6 +147,7 @@ int Game::failure_screen() {
 }
 
 void Game::run() {
+
     std::srand(static_cast<unsigned int>(std::time(nullptr)));
     Input input;
     input.init_terminal();
@@ -200,4 +202,6 @@ void Game::run() {
         render();
         frame++;
     }
+
+    showCursor();
 }
