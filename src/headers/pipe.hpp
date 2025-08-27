@@ -2,6 +2,7 @@
 
 #include <vector>
 #include <string>
+#include "color.hpp"
 
 class Pipe {
 private:
@@ -12,7 +13,7 @@ public:
     Pipe();
     Pipe(int initial_center, float initial_height); 
     void refresh(int& score);
-    void draw(std::vector<std::string>& screen, int ceiling_row, int floor_row) const;
+    void draw(std::vector<std::vector<Pixel>>& screen, int ceiling_row, int floor_row) const;
     int get_orow(int top) const;
     int get_center() const;
 };

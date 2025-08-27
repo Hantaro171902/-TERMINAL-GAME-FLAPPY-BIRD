@@ -1,7 +1,7 @@
 #include "bird.hpp"
 #include "pipe.hpp"
 #include "color.hpp"
-#include "game.hpp"  // For constants like GRAV, V0, FLAPPY_COL, etc.
+#include "game.hpp"
 
 Bird::Bird() : h0(NUM_ROWS / 2), t(0) {}
 
@@ -36,48 +36,49 @@ bool Bird::crashed_into(const Pipe& p) const {
     return false;
 }
 
-void Bird::draw(std::vector<std::string>& screen, int frame) const {
+void Bird::draw(std::vector<std::vector<Pixel>>& screen, int frame) const {
     int h = get_position();
-    setTextColor(BRIGHT_YELLOW);
-    if (GRAV * t + V0 > 0) {  // Going down
+
+    if (h < 0 || h >= NUM_ROWS) return;
+
+    if (GRAV * t + V0 > 0) { // Going down
         if (h >= 0 && h < NUM_ROWS && FLAPPY_COL - 1 >= 0 && FLAPPY_COL - 1 < NUM_COLS)
-            screen[h][FLAPPY_COL - 1] = '\\';
+            screen[h][FLAPPY_COL - 1] = { '\\', BRIGHT_YELLOW };
         if (h - 1 >= 0 && h - 1 < NUM_ROWS && FLAPPY_COL - 2 >= 0 && FLAPPY_COL - 2 < NUM_COLS)
-            screen[h - 1][FLAPPY_COL - 2] = '\\';
+            screen[h - 1][FLAPPY_COL - 2] = { '\\', BRIGHT_YELLOW };
         if (h >= 0 && h < NUM_ROWS && FLAPPY_COL >= 0 && FLAPPY_COL < NUM_COLS)
-            screen[h][FLAPPY_COL] = '0';
+            screen[h][FLAPPY_COL] = { '0', BRIGHT_YELLOW };
         if (h >= 0 && h < NUM_ROWS && FLAPPY_COL + 1 >= 0 && FLAPPY_COL + 1 < NUM_COLS)
-            screen[h][FLAPPY_COL + 1] = '/';
+            screen[h][FLAPPY_COL + 1] = { '/', BRIGHT_YELLOW };
         if (h - 1 >= 0 && h - 1 < NUM_ROWS && FLAPPY_COL + 2 >= 0 && FLAPPY_COL + 2 < NUM_COLS)
-            screen[h - 1][FLAPPY_COL + 2] = '/';
-    } else {  // Going up, flap wings
+            screen[h - 1][FLAPPY_COL + 2] = { '/', BRIGHT_YELLOW };
+    } else { // Going up, flap wings
         // Left wing
         if (frame % 6 < 3) {
             if (h >= 0 && h < NUM_ROWS && FLAPPY_COL - 1 >= 0 && FLAPPY_COL - 1 < NUM_COLS)
-                screen[h][FLAPPY_COL - 1] = '/';
+                screen[h][FLAPPY_COL - 1] = { '/', BRIGHT_YELLOW };
             if (h + 1 >= 0 && h + 1 < NUM_ROWS && FLAPPY_COL - 2 >= 0 && FLAPPY_COL - 2 < NUM_COLS)
-                screen[h + 1][FLAPPY_COL - 2] = '/';
+                screen[h + 1][FLAPPY_COL - 2] = { '/', BRIGHT_YELLOW };
         } else {
             if (h >= 0 && h < NUM_ROWS && FLAPPY_COL - 1 >= 0 && FLAPPY_COL - 1 < NUM_COLS)
-                screen[h][FLAPPY_COL - 1] = '\\';
+                screen[h][FLAPPY_COL - 1] = { '\\', BRIGHT_YELLOW };
             if (h - 1 >= 0 && h - 1 < NUM_ROWS && FLAPPY_COL - 2 >= 0 && FLAPPY_COL - 2 < NUM_COLS)
-                screen[h - 1][FLAPPY_COL - 2] = '\\';
+                screen[h - 1][FLAPPY_COL - 2] = { '\\', BRIGHT_YELLOW };
         }
         // Body
         if (h >= 0 && h < NUM_ROWS && FLAPPY_COL >= 0 && FLAPPY_COL < NUM_COLS)
-            screen[h][FLAPPY_COL] = '0';
+            screen[h][FLAPPY_COL] = { '0', BRIGHT_YELLOW };
         // Right wing
         if (frame % 6 < 3) {
             if (h >= 0 && h < NUM_ROWS && FLAPPY_COL + 1 >= 0 && FLAPPY_COL + 1 < NUM_COLS)
-                screen[h][FLAPPY_COL + 1] = '\\';
+                screen[h][FLAPPY_COL + 1] = { '\\', BRIGHT_YELLOW };
             if (h + 1 >= 0 && h + 1 < NUM_ROWS && FLAPPY_COL + 2 >= 0 && FLAPPY_COL + 2 < NUM_COLS)
-                screen[h + 1][FLAPPY_COL + 2] = '\\';
+                screen[h + 1][FLAPPY_COL + 2] = { '\\', BRIGHT_YELLOW };
         } else {
             if (h >= 0 && h < NUM_ROWS && FLAPPY_COL + 1 >= 0 && FLAPPY_COL + 1 < NUM_COLS)
-                screen[h][FLAPPY_COL + 1] = '/';
+                screen[h][FLAPPY_COL + 1] = { '/', BRIGHT_YELLOW };
             if (h - 1 >= 0 && h - 1 < NUM_ROWS && FLAPPY_COL + 2 >= 0 && FLAPPY_COL + 2 < NUM_COLS)
-                screen[h - 1][FLAPPY_COL + 2] = '/';
+                screen[h - 1][FLAPPY_COL + 2] = { '/', BRIGHT_YELLOW };
         }
     }
-    resetTextColor();
 }

@@ -1,12 +1,10 @@
 #include "color.hpp"
-#include <iostream>
+#include <string>
 
-using namespace std;
-
-void setTextColor(TextColor color) {
-    cout << "\033[" << color << "m";
+std::string getTextColor(TextColor color) {
+    return "\033[" + std::to_string(color) + "m";
 }
 
-void resetTextColor() {
-    cout << "\033[0m";
+std::string getResetColor() {
+    return "\033[0m";
 }

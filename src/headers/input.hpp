@@ -1,12 +1,13 @@
 #pragma once
 
+
 #ifdef _WIN32
     #include <conio.h>
 #else
     #include <termios.h>
     #include <unistd.h>
     #include <fcntl.h>
-
+    #include "color.hpp"
     class Input {
     private:
         struct termios oldt, newt;

@@ -2,6 +2,7 @@
 
 #include <string>
 #include <vector>
+#include "color.hpp"
 
 class Pipe;
 
@@ -14,7 +15,7 @@ public:
     Bird();
     void update(bool jump);
     int get_position() const;
-    void draw(std::vector<std::string>& screen, int frame) const;
+    void draw(std::vector<std::vector<Pixel>>& screen, int frame) const;
     bool crashed(int ceiling, int floor) const;
     bool crashed_into(const Pipe& p) const;
 };

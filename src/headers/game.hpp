@@ -1,6 +1,7 @@
 #pragma once 
 #include "bird.hpp"
 #include "pipe.hpp"
+#include "color.hpp"
 #include <vector>
 #include <string>
 
@@ -25,8 +26,8 @@ private:
     int frame;
     int score;
     int best_score;
-    std::vector<std::string> screen;
-
+    // std::vector<std::string> screen;
+    std::vector<std::vector<Pixel>> screen;
 public:
     Game();
     void run();
